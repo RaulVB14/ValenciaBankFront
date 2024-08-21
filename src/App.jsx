@@ -3,6 +3,7 @@ import { Router, useHistory } from 'react-router-dom'
 import NavBar from "./components/NavBar";
 import Login from "./Login"
 
+//holaaaa
 export function App() {
   // Función para cerrar la ventana pero no funciona del todo
   const handleExit = () => {
