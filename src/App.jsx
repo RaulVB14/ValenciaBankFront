@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 import Login from "./InicioSesion/Login";
 import Register from "./InicioSesion/Register";
 import Home from "./Home";
-
-
-
+import Profile from "./funciones/Profile"
+import Summary from "./funciones/Summary"
+import Withdraw from "./funciones/Withdraw"
+import Transfer from "./funciones/Transfer"
 
 //DE AQUI SALEN TODAS LAS RUTAS DE LA PAGINA WEB
 export function App() {
@@ -16,7 +17,10 @@ export function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home/>}/>
-
+        <Route path ="/home/Profile" element={<Profile/>}/>
+        <Route path ="/home/Summary" element={<Summary/>}/>
+        <Route path ="/home/Withdraw" element={<Withdraw/>}/>
+        <Route path ="/home/Transfer" element={<Transfer/>}/>
       </Routes>
     </Router>
   );

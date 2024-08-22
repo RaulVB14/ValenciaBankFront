@@ -1,29 +1,33 @@
 import "./Home.css";
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
   // Funciones para manejar los clics en los botones
-
-  const handlePerfil = () => {
-    navigate('/home/Perfil');
+  const navigate = useNavigate();
+  const Exit = () => {
+    navigate('/');
   };
-  const handleRetirar = () => {
-    navigate('/home/Retirar');
+  const handleProfile = () => {
+    navigate('/home/Profile');
   };
-  const handleTransferir = () => {
-    navigate('/home/Transferir');
+  const handleWithdraw = () => {
+    navigate('/home/Withdraw');
   };
-  const handleHistorico = () => {
-    navigate('/home/Historico'); 
+  const handleTransfer = () => {
+    navigate('/home/Transfer');
+  };
+  const handleSummary = () => {
+    navigate('/home/Summary'); 
   };
   return (
     <div className="buttons-container">
       <h2>VALENCIA BANK</h2>
-      <button className="btn">Salir</button>
-      <button className="btn" onClick={handlePerfil}>Perfil</button>
-      <button className="btn" onClick={handleRetirar}>Retirar</button>
-      <button className="btn" onClick={handleTransferir}>Transferir</button>
-      <button className="btn" onClick={handleHistorico}>Histórico</button>
+      <button className="btn" onClick={Exit}>Salir</button>
+      <button className="btn" onClick={handleProfile}>Perfil</button>
+      <button className="btn" onClick={handleWithdraw }>Retirar</button>
+      <button className="btn" onClick={handleTransfer}>Transferir</button>
+      <button className="btn" onClick={handleSummary}>Histórico</button>
     </div>
   );
 }
