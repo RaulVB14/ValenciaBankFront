@@ -5,7 +5,7 @@ import Register from "./InicioSesion/Register";
 import Home from "./Home";
 import Profile from "./funciones/Profile"
 import Summary from "./funciones/Summary"
-import Withdraw from "./funciones/Withdraw"
+import Deposit from "./funciones/Deposit"
 import Transfer from "./funciones/Transfer"
 
 //DE AQUI SALEN TODAS LAS RUTAS DE LA PAGINA WEB
@@ -17,9 +17,9 @@ export function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home/>}/>
-        <Route path ="/home/Profile" element={<Profile/>}/>
+        <Route path="/home/Profile" element={<Profile />} />
         <Route path ="/home/Summary" element={<Summary/>}/>
-        <Route path ="/home/Withdraw" element={<Withdraw/>}/>
+        <Route path ="/home/Deposit" element={<Deposit/>}/>
         <Route path ="/home/Transfer" element={<Transfer/>}/>
       </Routes>
     </Router>

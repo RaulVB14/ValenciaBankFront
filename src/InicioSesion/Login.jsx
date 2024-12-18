@@ -28,6 +28,9 @@ function Login() {
       .then((data) => {
         if (data) {
           console.log("Login correcto", data);
+          // Almacenar el DNI en localStorage
+          localStorage.setItem("dni", DNI);
+          // Redirigir al home
           navigate("/home");
         }
       })

@@ -12,32 +12,25 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Comprobar si el DNI ya existe
-        const dniExists = await fetch(`http://localhost:8080/user/exists/${dni}`)
-            .then(response => response.json())
-            .catch(error => {
-                console.error("Error checking DNI:", error);
-                return false;
-            });
+        const user = { username, password, dni };
 
-        if (dniExists) {
-            setErrorMessage("El DNI ya está registrado. Por favor, use otro.");
-        } else {
-            // Proceder con el registro
-            const user = { username, password, dni };
-            fetch("http://localhost:8080/user/add", {
+        try {
+            const response = await fetch("http://localhost:8080/user/add", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(user),
-            })
-            .then(response => response.json())
-            .then((registeredUser) => {
-                console.log("Se registró correctamente el usuario", registeredUser);
-                navigate('/home');
-            })
-            .catch((error) => {
-                console.error("Error en la solicitud:", error);
             });
+
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status} ${response.statusText}`);
+            }
+
+            const registeredUser = await response.json();
+            console.log("Se registró correctamente el usuario", registeredUser);
+            navigate('/home');
+        } catch (error) {
+            console.error("Error en la solicitud:", error);
+            setErrorMessage("No se pudo registrar el usuario. Por favor, inténtelo de nuevo más tarde.");
         }
     };
 

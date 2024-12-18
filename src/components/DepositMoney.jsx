@@ -1,6 +1,6 @@
 import React from "react";
 
-function WithdrawMoney({money}) {
+function DepositMoney({money}) {
   return (
     <div className="buttons-container">
       <div className="info-row">
@@ -11,4 +11,4 @@ function WithdrawMoney({money}) {
   );
 }
 
-export default WithdrawMoney;
+export default DepositMoney;
