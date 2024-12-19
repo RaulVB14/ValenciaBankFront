@@ -52,10 +52,19 @@ function Transfer() {
         date: new Date().toISOString(), 
       };
 
+      console.log("Info de transactionData: ")
       console.log(transactionData)
-      await axios.post('http://localhost:8080/transactions/add', transactionData); // Asegúrate de que esta URL sea correcta
-      alert('Transferencia realizada con éxito');
-      navigate('/home'); 
+      // Enviar ambos objetos al backend
+      const response2 = await fetch('http://localhost:8080/transactions/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          transaction: transactionData,
+          user: userData.dni
+        }),
+      });
     } catch (error) {
       console.error('Error al realizar la transferencia', error);
       alert('Hubo un problema al realizar la transferencia');

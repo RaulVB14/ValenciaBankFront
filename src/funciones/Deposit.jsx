@@ -45,22 +45,18 @@ function Deposit() {
         amount: parseFloat(amount),
         date: new Date().toISOString(),
       };
-
-      const userPayload = {
-        dni: userData.dni,
-        name: userData.name,
-        // Otros campos que puedas necesitar del usuario
-      };
+      console.log("datos del transaction data: ") //pilla bien la cantidad que se quiere ingresar
+      console.log(transactionData.amount, transactionData.date, transactionData.destinationAccount, transactionData.originAccount)
 
       // Enviar ambos objetos al backend
-      const response = await fetch('http://localhost:8080/transactions/deposit/add', {
+      const response = await fetch('http://localhost:8080/transactions/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           transaction: transactionData,
-          user: userPayload
+          user: userData.dni
         }),
       });
 
@@ -72,6 +68,7 @@ function Deposit() {
       console.log('Ingreso realizado con éxito', responseData);
       alert('Ingreso realizado con éxito');
       navigate('/home');
+
     } catch (error) {
       console.error('Error al realizar el ingreso', error);
       alert('Hubo un problema al realizar el ingreso');

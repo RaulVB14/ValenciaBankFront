@@ -27,6 +27,8 @@ function Register() {
 
             const registeredUser = await response.json();
             console.log("Se registró correctamente el usuario", registeredUser);
+             // Almacenar el DNI en localStorage
+            localStorage.setItem("dni", dni);
             navigate('/home');
         } catch (error) {
             console.error("Error en la solicitud:", error);

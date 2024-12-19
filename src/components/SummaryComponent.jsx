@@ -1,12 +1,13 @@
 import React from 'react';
 
-function SummaryComponent({ moneyIn, moneyOut, destinationAccount, transactionDate }) {
+function SummaryComponent({ id, originAccount, destinationAccount, amount, date }) {
   return (
     <div className="summary-component">
-      <p><strong>Ingreso:</strong> {moneyIn}</p>
-      <p><strong>Gasto:</strong> {moneyOut}</p>
+      <p><strong>id:</strong> {id}</p>
+      <p><strong>originAccount:</strong> {originAccount}</p>
       <p><strong>Cuenta Destino:</strong> {destinationAccount}</p>
-      <p><strong>Fecha de Transacción:</strong> {transactionDate}</p>
+      <p><strong>Cantidad de dinero:</strong> {amount} $ </p>
+      <p><strong>Fecha de Transacción:</strong> {date}</p>
     </div>
   );
 }
