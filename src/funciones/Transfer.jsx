@@ -65,11 +65,22 @@ function Transfer() {
           user: userData.dni
         }),
       });
+      if (!response2.ok) {
+        throw new Error('Error al realizar el ingreso');
+      }
+
+      alert('Transferencia realizada con éxito');
+      navigate('/home');
     } catch (error) {
       console.error('Error al realizar la transferencia', error);
       alert('Hubo un problema al realizar la transferencia');
     }
   };
+
+  /*const responseData = await response.json();
+  console.log('Ingreso realizado con éxito', responseData);
+  alert('Ingreso realizado con éxito');
+  navigate('/home');}*/
 
   const Exit = () => {
     navigate('/home');
