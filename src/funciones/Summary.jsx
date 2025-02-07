@@ -11,12 +11,48 @@ function Summary() {
   const [startDate, setStartDate] = useState(""); // Estado para la fecha inicial
   const [endDate, setEndDate] = useState(""); // Estado para la fecha final
   const navigate = useNavigate();
+  
+  const convertDateFormat = (dateStr) => {
+    return dateStr.replace(/-/g, '/');
+  };
 
   useEffect(() => {
-    if (transactionData !== null) {
-      handleFilter();
-    }
-  }, [minAmount, maxAmount, startDate, endDate]);
+    // Al cargar el componente, intenta cargar los filtros previos desde localStorage
+    const savedMinAmount = localStorage.getItem('minAmount');
+    const savedMaxAmount = localStorage.getItem('maxAmount');
+    const savedStartDate = localStorage.getItem('startDate');
+    const savedEndDate = localStorage.getItem('endDate');
+
+    if (savedMinAmount) setMinAmount(savedMinAmount);
+    if (savedMaxAmount) setMaxAmount(savedMaxAmount);
+    if (savedStartDate) setStartDate(savedStartDate);
+    if (savedEndDate) setEndDate(savedEndDate);
+
+    console.log('Cargando filtros previos:', savedMinAmount, savedMaxAmount, savedStartDate, savedEndDate);
+
+    const convertDateFormat = (dateStr) => {
+      return dateStr.replace(/-/g, '/');
+    };
+
+    fetchTransactionData();
+  }, []); // Solo se ejecuta una vez al cargar el componente
+
+
+  const resetFilters = () => {
+    setFilteredData([]);
+    setFilters({});
+  };
+
+  const Reset = () => {
+    resetFilters();
+  }
+
+  const Exit = () => {
+    navigate('/home');
+    
+  
+    // Lógica adicional para salir de la pantalla si es necesario
+  };
 
   const fetchTransactionData = async () => {
     try {
@@ -25,52 +61,66 @@ function Summary() {
 
       const transactions = response.data.transactions;
 
-      const formattedTransactions = transactions.map(transaction => {
-        return {
-          ...transaction,
-          date: new Date(transaction.date).toLocaleString().substring(0, 10)
-        };
-      });
+      // Formatear las fechas a un formato más sencillo de comparar
+      const formattedTransactions = transactions.map(transaction => ({
+        ...transaction,
+        date: new Date(transaction.date).toLocaleDateString(), // Fecha en formato dd/mm/yyyy
+      }));
 
       setTransactionData(formattedTransactions);
-      setFilteredData(formattedTransactions);
+      setFilteredData(formattedTransactions); // Inicialmente se muestran todas las transacciones
     } catch (error) {
       console.error('Error al obtener los datos de la transacción', error);
       alert('Hubo un problema al obtener los datos de la transacción');
     }
   };
-  
-  //los filtros no funcionan ver que pasa
+
   const handleFilter = () => {
-    if (transactionData === null) {
-      return;
-    }
+    if (!transactionData) return;
 
-    let filteredTransactions = transactionData;
+    let filteredTransactions = [...transactionData]; // Copia de las transacciones
 
+    // Filtro por monto mínimo
     if (minAmount !== "") {
       filteredTransactions = filteredTransactions.filter(transaction => transaction.amount >= parseFloat(minAmount));
     }
+
+    // Filtro por monto máximo
     if (maxAmount !== "") {
       filteredTransactions = filteredTransactions.filter(transaction => transaction.amount <= parseFloat(maxAmount));
     }
 
+    // Filtro por fecha desde
     if (startDate !== "") {
-      filteredTransactions = filteredTransactions.filter(transaction => new Date(transaction.date) >= new Date(startDate));
+      filteredTransactions = filteredTransactions.filter(transaction => {
+        const transactionDate = new Date(transaction.date);
+        const filterStartDate = new Date(startDate);
+        return transactionDate >= filterStartDate;
+      });
     }
+
+    // Filtro por fecha hasta
     if (endDate !== "") {
-      filteredTransactions = filteredTransactions.filter(transaction => new Date(transaction.date) <= new Date(endDate));
+      filteredTransactions = filteredTransactions.filter(transaction => {
+        const transactionDate = new Date(transaction.date);
+        const filterEndDate = new Date(endDate);
+        return transactionDate <= filterEndDate;
+      });
     }
 
-    setFilteredData(filteredTransactions);
+    setFilteredData(filteredTransactions); // Actualiza las transacciones filtradas
+
+    // Guardar los filtros en localStorage
+    localStorage.setItem('minAmount', minAmount);
+    localStorage.setItem('maxAmount', maxAmount);
+    localStorage.setItem('startDate', startDate);
+    localStorage.setItem('endDate', endDate);
   };
 
-  const Exit = () => {
-    navigate('/home');
-  };
+
 
   return (
-    <div className="buttons-container">
+    <div className="summary-container">
       <h2>VALENCIA BANK</h2>
 
       {/* Filtros */}
@@ -104,23 +154,30 @@ function Summary() {
         <button onClick={handleFilter}>Aplicar Filtros</button>
       </div>
 
-      {filteredData ? (
-        filteredData.map((transaction, index) => (
-          <SummaryComponent
-            key={index}
-            id={transaction.id}
-            originAccount={transaction.originAccount}
-            destinationAccount={transaction.destinationAccount}
-            amount={transaction.amount}
-            date={transaction.date}
-          />
-        ))
-      ) : (
-        <p>No se ha cargado ninguna información de la transacción.</p>
-      )}
-
-      <button className="btn" onClick={fetchTransactionData}>Obtener Información</button>
-      <button className="btn" onClick={Exit}>Salir</button>
+      {/* Mostrar transacciones filtradas */}
+      <div className="transactions-container">
+        {filteredData ? (
+          filteredData.length > 0 ? (
+            filteredData.map((transaction, index) => (
+              <SummaryComponent
+                key={index}
+                id={transaction.id}
+                originAccount={transaction.originAccount}
+                destinationAccount={transaction.destinationAccount}
+                amount={transaction.amount}
+                date={transaction.date}
+              />
+            ))
+          )
+           : (
+            <p>No se encontraron transacciones con los filtros seleccionados.</p>
+          )
+        ) : (
+          <p>No se ha cargado ninguna información de la transacción.</p>
+        )}
+        <button className="btn" onClick={fetchTransactionData}>Obtener Información</button>
+        <button className="btn" onClick={Exit}>Salir</button>
+      </div>
     </div>
   );
 }

@@ -1,52 +1,75 @@
 .summary-container {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-  }
-  
-  .date-picker {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .date-picker label {
-    display: flex;
-    flex-direction: column;
-    font-size: 14px;
-  }
-  
-  .date-picker input {
-    margin-top: 5px;
-    padding: 5px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
-  
-  .summary-info span {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-    font-size: 16px;
-  }
-  .filters {
-    margin: 20px 0;
-  }
-  
-  .filters label {
-    margin-right: 10px;
-  }
-  
-  .filters input {
-    margin-right: 10px;
-    padding: 5px;
-  }
-  
-  .filters button {
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  
+  max-width: 600px; /* Aumenta el ancho máximo */
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff; /* Fondo blanco para mejor contraste */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+}
+
+.date-picker {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.date-picker label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #333; /* Color de texto más oscuro */
+}
+
+.date-picker input {
+  margin-top: 5px;
+  padding: 8px; /* Aumenta el padding para mejor usabilidad */
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px; /* Aumenta el tamaño de la fuente */
+}
+
+.summary-info span {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #333; /* Color de texto más oscuro */
+}
+
+.filters {
+  margin-bottom: 20px;
+}
+
+.transactions-container {
+  max-height: 400px; /* Ajusta la altura según sea necesario */
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 4px; /* Bordes redondeados */
+}
+
+.transactions-container p {
+  margin: 0;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff; /* Fondo blanco para mejor contraste */
+}
+
+.transactions-container p:last-child {
+  border-bottom: none;
+}
+
+.transactions-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.transactions-container::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+.transactions-container::-webkit-scrollbar-track {
+  background-color: #f9f9f9;
+}
