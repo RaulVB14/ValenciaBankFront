@@ -1,27 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: url("../images/mar.png") no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+}
+
+/* Contenedor del logo y título en la esquina superior derecha */
+.header {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: 15%; /* Ocupa solo el 15% de la pantalla */
+}
+
+.header img {
+  width: 180px; /* Ajusta el tamaño del logo */
+  height: auto;
+}
+
+/* Contenedor de botones */
 .buttons-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Ocupa toda la altura de la ventana */
 }
 
-h2 {
-  margin-bottom: 20px;
-  color: #333;
-}
-
+/* Botones más modernos */
 .btn {
-  background-color: #007bff;
-
+  background-color: #ffcc00;
+  color: #333;
   border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
+  border-radius: 25px;
+  padding: 12px 25px;
   margin: 10px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .btn:hover {
-  background-color: #0056b3;
+  background-color: #ffaa00;
+  transform: scale(1.05);
 }

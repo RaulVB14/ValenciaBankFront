@@ -43,6 +43,9 @@ function MainContent() {
     <div className="button-container">
       <button className="btn" onClick={handleLogin}>Login</button>
       <button className="btn" onClick={handleRegister}>Registro</button>
+      <div className="header">
+        <img src="./images/ValenciaBankLogo.png" alt="ValenciaBank Logo" />
+      </div>
     </div>
   );
 }
