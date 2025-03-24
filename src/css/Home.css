@@ -1,61 +1,192 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
 body {
-  font-family: 'Inter', sans-serif;
-  background: url("../images/mar.png") no-repeat center center fixed;
-  background-size: cover;
-  color: #fff;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  position: relative;
+    font-family: 'Inter', sans-serif;
+    background: url("../images/mar.png") no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+}
+
+/* Contenedor principal */
+.home-container {
+    width: 100%;
+    height: 100%;
+}
+
+/* Contenedor de iconos en la esquina superior derecha */
+.header-icons {
+    position: absolute;
+    top: 20px;
+    right: 60px; /* Mueve los iconos más a la izquierda */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Estilos para los botones de iconos */
+.icon-btn {
+    background-color: transparent;
+    border: none;
+    color: #779ce0; /* Cambia el color de los iconos a negro */
+    font-size: 48px;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.icon-btn:hover {
+    color: #333; /* Oscurece el color al pasar el ratón */
 }
 
 /* Contenedor del logo y título en la esquina superior derecha */
 .header {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  max-width: 15%; /* Ocupa solo el 15% de la pantalla */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    max-width: 15%;
 }
 
 .header img {
-  width: 180px; /* Ajusta el tamaño del logo */
-  height: auto;
+    width: 180px;
+    height: auto;
 }
 
 /* Contenedor de botones */
 .buttons-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Botones más modernos */
 .btn {
-  background-color: #ffcc00;
-  color: #333;
-  border: none;
-  border-radius: 25px;
-  padding: 12px 25px;
-  margin: 10px;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: bold;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .btn:hover {
-  background-color: #ffaa00;
-  transform: scale(1.05);
+    background-color: #ffaa00;
+    transform: scale(1.05);
+}
+
+/* Contenedor del balance en la esquina superior izquierda */
+.balance-container {
+    position: absolute;
+    top: 50px;
+    left: 60px;
+    background-color: rgba(255, 255, 153, 0.9);
+    color: #333;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    font-weight: bold;
+    font-size: 16px;
+    max-width: 250px;
+    border: 2px solid #dacea2;
+}
+
+/* Información del saldo */
+.balance-info {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* Resaltar saldo */
+.balance-amount {
+    font-size: 20px;
+    font-weight: bold;
+    color: #383530;
+}
+
+.crypto-graphic-container {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    position: absolute;
+    top: 250px;
+    left: 55px;
+    border: none;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 153, 0.9);
+}
+
+/* Estilos para el desplegable (select) */
+.crypto-graphic-container select {
+    background-color: #ffcc00;
+    color: #333;
+    border: 2px solid #ffaa00;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.crypto-graphic-container select:hover,
+.crypto-graphic-container select:focus {
+    border-color: #ff8c00;
+}
+
+/* Estilos para las opciones del desplegable */
+.crypto-graphic-container select option {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Estilos para el contenedor de los botones */
+.days-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Estilos específicos para los botones dentro de crypto-graphic-container */
+.crypto-graphic-container button {
+    background: none;
+    border: none;
+    padding: 8px 16px;
+    margin: 0 8px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s, color 0.3s;
+    color: #333;
+}
+
+.crypto-graphic-container button.active {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+}
+
+.crypto-graphic-container button:hover {
+    color: #0056b3;
 }

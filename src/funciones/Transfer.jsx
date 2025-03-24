@@ -77,10 +77,6 @@ function Transfer() {
     }
   };
 
-  /*const responseData = await response.json();
-  console.log('Ingreso realizado con éxito', responseData);
-  alert('Ingreso realizado con éxito');
-  navigate('/home');}*/
 
   const Exit = () => {
     navigate('/home');

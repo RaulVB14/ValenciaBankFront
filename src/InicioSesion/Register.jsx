@@ -1,12 +1,14 @@
 import "/src/css/Register.css";
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Importa los iconos
 
 function Register() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [dni, setDni] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [showPassword, setShowPassword] = useState(false); // Nuevo estado
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -27,7 +29,6 @@ function Register() {
 
             const registeredUser = await response.json();
             console.log("Se registró correctamente el usuario", registeredUser);
-             // Almacenar el DNI en localStorage
             localStorage.setItem("dni", dni);
             navigate('/home');
         } catch (error) {
@@ -53,13 +54,22 @@ function Register() {
 
                 <div className="form-group">
                     <label htmlFor="password">Password:</label>
-                    <input
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
+                    <div>
+                        <input
+                            type={showPassword ? "text" : "password"} // Cambia el tipo de input
+                            id="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                        <button
+                            className="button-eye"
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            {showPassword ? <FaEyeSlash size={30} /> : <FaEye size={30} />}
+                        </button>
+                    </div>
                 </div>
 
                 <div className="form-group">
